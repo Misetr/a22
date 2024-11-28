@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//    take
+    // Получение данных из формы
     $firstName = htmlspecialchars($_POST['firstName']);
     $lastName = htmlspecialchars($_POST['lastName']);
     $street = htmlspecialchars($_POST['street'] ?? '');
@@ -15,12 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = htmlspecialchars($_POST['password'] ?? '');
     $notes = htmlspecialchars($_POST['notes'] ?? '');
 
-    // save
+    // Сохранение данных в файл
     $data = "Imię: $firstName\nNazwisko: $lastName\nUlica: $street\nDom: $house\nMieszkanie: $apartment\nMiasto: $city\nData urodzenia: $birthDate\nTelefon: $phone\nEmail: $email\nPłeć: $gender\nPrawo jazdy: $driverLicense\nUwagi: $notes\n\n";
     file_put_contents('data.txt', $data, FILE_APPEND);
 
-
-    echo "Dane zostały zapisane!";
+    // Перенаправление на страницу с просмотром данных
+    header("Location: view_data.php");
+    exit();
 } else {
-    echo "Błędne żądanie.";
+    echo "new";
 }
